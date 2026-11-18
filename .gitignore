@@ -1,7 +1,26 @@
 # Statements and generated documents must stay local.
-*.pdf
+*.[pP][dD][fF]
+# Private previews and screenshots are local artifacts too.
+*.[pP][nN][gG]
+*.[jJ][pP][gG]
+*.[jJ][pP][eE][gG]
+input/
+inputs/
+private/
 tmp/
 output/
 .venv/
+venv/
+.env
+.env.*
+!.env.example
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+.DS_Store
+Thumbs.db

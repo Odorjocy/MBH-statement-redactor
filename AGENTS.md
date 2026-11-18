@@ -6,7 +6,7 @@
 
 ## Build, Test, and Development Commands
 
-Use Python 3.10 or newer. Run commands from the repository root:
+Use Python 3.11 or newer. Run commands from the repository root:
 
 - `py -m venv .venv`: create a virtual environment.
 - `.venv\Scripts\python.exe -m pip install -r requirements.txt`: install pinned dependencies.
@@ -30,3 +30,7 @@ Pull requests should explain the change, link relevant issues, and report valida
 ## Data Handling
 
 Never commit real statements, private screenshots, or extracted account data. Never overwrite source PDFs. Changed layouts and ambiguous transaction boundaries must fail closed rather than reveal additional content.
+
+## Public Documentation
+
+Use synthetic IDs and filenames in examples. Follow `CONTRIBUTING.md` and `SECURITY.md`; publication steps are in `docs/PUBLISHING.md`. The project is intentionally unlicensed. CI runs synthetic tests on Windows and Linux with Python 3.11 and 3.12. Review history before publication: ignore rules do not remove previously committed private information.
