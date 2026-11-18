@@ -2,30 +2,31 @@
 
 ## Project Structure & Module Organization
 
-This repository currently contains no application code, tests, assets, or build configuration. Keep this guide aligned with the implementation as it develops.
-
-When adding the initial implementation, organize production code under `src/`, automated tests under `tests/`, and synthetic PDF fixtures under `tests/fixtures/`. Place developer utilities in `scripts/` and usage documentation in `README.md`. Prefer small modules with a single responsibility.
+`src/pdf_obfuscator.py` contains the MBH statement parser, region selection, permanent raster redaction, and command-line entry point. `tests/test_redaction.py` generates synthetic PDF fixtures in temporary directories. `README.md` documents usage and layout limitations; `requirements.txt` pins dependencies. Generated documents belong under `output/pdf/` and inspection files under `tmp/pdfs/`; both are ignored by Git.
 
 ## Build, Test, and Development Commands
 
-No build system, dependency manager, or runnable entry point is configured yet. There are currently no supported build, test, lint, or local-run commands.
+Use Python 3.10 or newer. Run commands from the repository root:
 
-When introducing tooling, document exact setup and execution commands in `README.md` and update this section. Run commands from the repository root, pin dependencies using the selected ecosystem's lockfile, and avoid undocumented machine-specific setup.
+- `py -m venv .venv`: create a virtual environment.
+- `.venv\Scripts\python.exe -m pip install -r requirements.txt`: install pinned dependencies.
+- `.venv\Scripts\python.exe src/pdf_obfuscator.py input.pdf output/pdf/redacted.pdf --transaction-id EXAMPLE123`: retain exactly three matching entries.
+- `.venv\Scripts\python.exe -m unittest discover -s tests -v`: run regression tests.
 
 ## Coding Style & Naming Conventions
 
-Follow the conventions of the language selected for the implementation. Use consistent indentation within each file, descriptive names, and short functions. Keep formatting-only changes separate from behavioral changes.
-
-Add formatter and linter configuration alongside the first source files. Document naming rules and executable checks here once those tools exist.
+Follow PEP 8, four-space indentation, `snake_case` functions, and `PascalCase` classes. Use descriptive names and short functions. No formatter or linter is configured. Keep formatting-only changes separate from behavioral changes.
 
 ## Testing Guidelines
 
-No testing framework or coverage threshold is established. Add automated tests alongside new behavior and document how to run them. Name tests after the behavior they verify.
-
-For PDF processing, cover malformed inputs, output readability, and verification that targeted content cannot be recovered through text extraction. Use synthetic fixtures without personal or confidential information.
+Use standard-library `unittest`, with `test_*.py` files and behavior-oriented `test_*` methods. No numerical coverage threshold is established. Cover malformed inputs, exact transaction counts, output readability, permanent removal, and source preservation. Compare bitmap regions as well as extracted text. Use synthetic fixtures without personal or confidential information.
 
 ## Commit & Pull Request Guidelines
 
-No Git history is available to establish existing conventions. Use concise, imperative commit subjects, such as `Add PDF input validation`, and keep commits focused.
+Follow the existing imperative commit style, such as `Add repository contributor guidelines`. Keep commits focused.
 
 Pull requests should explain the change, link relevant issues, and report validation commands and results. Include before-and-after examples for output changes, using sanitized documents.
+
+## Data Handling
+
+Never commit real statements, private screenshots, or extracted account data. Never overwrite source PDFs. Changed layouts and ambiguous transaction boundaries must fail closed rather than reveal additional content.

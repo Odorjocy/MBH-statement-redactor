@@ -1,0 +1,7 @@
+# Statements and generated documents must stay local.
+*.pdf
+tmp/
+output/
+.venv/
+__pycache__/
+*.py[cod]
